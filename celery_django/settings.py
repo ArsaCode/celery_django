@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'todolist',
 ]
 
 MIDDLEWARE = [
@@ -118,3 +119,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Celery configuration
+
+CELERY_TIMEZONE = "France/Paris"
+CELERY_TAST_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
