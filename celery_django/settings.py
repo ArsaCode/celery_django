@@ -122,6 +122,7 @@ STATIC_URL = '/static/'
 
 # Celery configuration
 
+CELERY_BROKER_URL = "rabbitmq://guest:guest@localhost"
 CELERY_TIMEZONE = "France/Paris"
 CELERY_TAST_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60
