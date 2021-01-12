@@ -15,10 +15,10 @@ def index(request):
 def add(request):
     todos = Todo.objects.all()
     if request.method == "POST":
-        form = CreateForm(request.POST)
+        form = AddForm(request.POST)
         if form.is_valid():
             data = form.save(commit=False)
-            tasks.add.delay(data)
+            tasks.add.delay(data.content)
             return render(request, "todolist/index.html", {
                 "todos": todos,
             })
