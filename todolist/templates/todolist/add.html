@@ -1,0 +1,18 @@
+{% extends "todolist/layout.html" %}
+
+{% block body %}
+    <div class="container mt-4 col-sm-6">
+        <div class="card text-center">
+            <div class="card-header">
+                Add a new to-do
+            </div>
+            <div class="card-content my-4">
+                <form action="{% url 'todolist:add' %}" method="post">
+                    {% csrf_token %}
+                    {{ addForm.as_p }}
+                    <button type="submit" class="btn btn-success">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
