@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, reverse
+from django.http import HttpResponseRedirect
 
 from todolist.models import Todo
 from todolist.forms import AddForm
@@ -19,9 +20,7 @@ def add(request):
         if form.is_valid():
             data = form.save(commit=False)
             tasks.add.delay(data.content)
-            return render(request, "todolist/index.html", {
-                "todos": todos,
-            })
+            return HttpResponseRedirect(reverse('todolist:index'))
         else:
             return render(request, "todolist/add.html", {
             "addForm": AddForm()
@@ -31,3 +30,7 @@ def add(request):
         return render(request, "todolist/add.html", {
             "addForm": AddForm()
         })
+
+def delete(request, id):
+    tasks.remove.delay(id)
+    return HttpResponseRedirect(reverse('todolist:index'))

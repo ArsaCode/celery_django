@@ -7,7 +7,13 @@
                 To-do list
             </div>
             <div class="card-content">
-                Another to-do list 🙂
+                <ul class="list-group list-group-flush"></ul>
+                    {% for todo in todos  %}               
+                        <li class="list-group-item">{{ todo.content }}
+                            <a class="btn btn-danger" href="{% url 'todolist:delete' todo.pk %}">Delete</a>
+                        </li>
+                    {% endfor %}
+                </ul>
             </div>
             <div class="card-footer">
                 <a class="btn btn-success" href="{% url 'todolist:add' %}">Add todo</a>

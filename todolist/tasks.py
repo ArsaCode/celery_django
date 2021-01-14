@@ -8,5 +8,7 @@ def add(content):
     return None
 
 @shared_task
-def remove():
+def remove(id):
+    todelete = Todo.objects.get(pk=id)
+    todelete.delete()
     return None
